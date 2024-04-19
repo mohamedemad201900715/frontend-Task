@@ -202,7 +202,8 @@ formElementsForm3.forEach(element => {
                 return element.value.trim() !== '' && checkPasswordMatch() && emailValidation() ;
         });
         const countrySelected = document.querySelector('.custom-selector').getAttribute('data-value') !== '';
-        const phoneNumber = document.getElementById('client-number').classList.contains('is-valid');
+        var phoneNumber = document.getElementById('client-number');
+        phoneNumber = validatePhoneNumber(phoneNumber);
         if (allFilled && countrySelected && phoneNumber) {
             document.querySelector(".next-form3-btn").disabled = false;
         } else {
