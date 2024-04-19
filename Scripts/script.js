@@ -85,8 +85,6 @@ function getRequiredField(element){
             document.getElementById('piece-number').setAttribute('min', '10');
 
         }
-    } else {
-        console.log("Error: Element not found");
     }
    
 }
@@ -160,7 +158,6 @@ function emailValidation(){
         if (emailInput.value === '') {
             feedback.textContent = '';
             feedback.style.color = 'black';
-            console.log("run here")
         } else if (emailPattern.test(emailInput.value)) {
             feedback.textContent = 'البريد الإلكتروني صالح';
             feedback.style.color = 'green';
@@ -228,8 +225,26 @@ nextForm1.addEventListener("click", () => {
 //End form 3
 // Start form 4
 // Get all required form-4 elements
+formElementsForm1
 const formElementsForm4 = document.querySelectorAll('#form-4 input[required]');
 formElementsForm4.forEach(element => {
+    element.addEventListener('input', () => {
+        const allFilled = Array.from(formElementsForm4).every(element => {
+            if (element.type === "radio") {
+                return document.querySelector(`#form-4 input[name="${element.name}"]:checked`) !== null;
+            } else {
+                return element.value.trim() !== '';
+            }
+        });
+        const countrySelected = document.querySelector('.number-2 .custom-selector').getAttribute('data-value') !== '';
+        var phoneNumber = document.getElementById('client-delever-number');
+        phoneNumber = validatePhoneNumber(phoneNumber);
+        if (allFilled && countrySelected && phoneNumber) {
+            document.querySelector(".next-form4-btn").disabled = false;
+        } else {
+            document.querySelector(".next-form4-btn").disabled = true;
+        }
+    });
     element.addEventListener('change', () => {
         const allFilled = Array.from(formElementsForm4).every(element => {
             if (element.type === "radio") {
@@ -240,25 +255,13 @@ formElementsForm4.forEach(element => {
         });
         const countrySelected = document.querySelector('.number-2 .custom-selector').getAttribute('data-value') !== '';
         const phoneNumber = document.getElementById('client-delever-number').classList.contains('is-valid');
-
         if (allFilled && countrySelected && phoneNumber) {
             document.querySelector(".next-form4-btn").disabled = false;
         } else {
             document.querySelector(".next-form4-btn").disabled = true;
         }
     });
-    element.addEventListener('input', () => {
-        const allFilled = Array.from(formElementsForm4).every(element => {
-                return element.value.trim() !== '' ;
-        });
-        const countrySelected = document.querySelector('.number-2 .custom-selector').getAttribute('data-value') !== '';
-        const phoneNumber = document.getElementById('client-delever-number').classList.contains('is-valid');
-        if (allFilled && countrySelected && phoneNumber) {
-            document.querySelector(".next-form4-btn").disabled = false;
-        } else {
-            document.querySelector(".next-form4-btn").disabled = true;
-        }
-    });
+    
 });
 
 // redirect back to form 2
@@ -313,17 +316,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 });
 // validate phone number input
-const phoneNumberInputClient = document.getElementById('client-number');
-const phoneNumberInputDelever = document.getElementById('client-delever-number');
+
+
 function validatePhoneNumber(phoneNumberInput) {
     if(!phoneNumberInput.value){
         return false;
     }
-    const regex = /^\+?\d{9,15}$/; 
-    return regex.test(phoneNumberInput.value);
+    phoneNumberInput.value = phoneNumberInput.value.replace(/[^0-9]/g, '');
+    return phoneNumberInput.value.length >= 10;
 }
-
+const phoneNumberInputClient = document.getElementById('client-number');
 phoneNumberInputClient.addEventListener('input', function() {
+    
     const isValidPhoneNumber = validatePhoneNumber(phoneNumberInputClient);
     if (isValidPhoneNumber) {
         phoneNumberInputClient.classList.remove('is-invalid');
@@ -333,8 +337,8 @@ phoneNumberInputClient.addEventListener('input', function() {
         phoneNumberInputClient.classList.add('is-invalid');
     }
 });
-
-phoneNumberInputDelever.addEventListener('input', function() {
+const phoneNumberInputDelever = document.getElementById('client-delever-number');
+phoneNumberInputDelever.addEventListener('input', ()=> {
     const isValidPhoneNumber = validatePhoneNumber(phoneNumberInputDelever);
     if (isValidPhoneNumber) {
         phoneNumberInputDelever.classList.remove('is-invalid');
@@ -347,12 +351,17 @@ phoneNumberInputDelever.addEventListener('input', function() {
 //form 5
 function getToForm() {
     var data = [];
+    if(document.querySelectorAll('#form-5 .container p')){
+        document.querySelectorAll('#form-5 .container p').forEach((e)=>{
+            e.remove()
+        })
+
+    }
 //form1
     var formType = document.querySelector('input[name="type-form"]:checked');
     if (formType) {
         data.push({ formType: formType.value });
     }
-    console.log(data);
     var carInfo = {
         carMaker: document.getElementById('car-maker').value,
         carModel: document.getElementById('car-model').value,
@@ -383,7 +392,7 @@ function getToForm() {
 
      //form4
          var codeDeleverNumber = document.querySelector('.number-2 .custom-selector').getAttribute('data-value');
-        var shippingType = document.querySelector('input[name="form-type"]:checked');
+        var shippingType = document.querySelector('input[name="shipping-type"]:checked');
         var additionalClientInfo = {
         shippingType: shippingType ? shippingType.value : null,
         clientArabicName: document.getElementById('client-arabic-name').value,
@@ -397,11 +406,10 @@ function getToForm() {
         phoneNumber: document.getElementById('client-delever-number').value
     };
     data.push(additionalClientInfo);
-    console.log(data);
     var formData ;
     data.forEach((item)=>{
         if(item.formType){
-            formData = document.createElement('p');
+            formData = document.createElement('h1');
             formData.innerHTML = `نوع النموزج: ${item.formType}`;
             formData.classList.add('text-center');
             document.querySelector('#form-5 .container').appendChild(formData);
@@ -497,15 +505,15 @@ function getToForm() {
             formData.classList.add('fw-bold');
             document.querySelector('#form-5 .container ').appendChild(formData);
         }
-         if(item.state){
+         if(item.city){
             formData = document.createElement('p');
-            formData.innerHTML = `المدينه: ${item.state}`;
+            formData.innerHTML = `المدينه: ${item.city}`;
             formData.classList.add('fw-bold');
             document.querySelector('#form-5 .container ').appendChild(formData);
         }
-         if(item.city){
+         if(item.state){
             formData = document.createElement('p');
-            formData.innerHTML = `الحي: ${item.city}`;
+            formData.innerHTML = `الحي: ${item.state}`;
             formData.classList.add('fw-bold');
             document.querySelector('#form-5 .container ').appendChild(formData);
         }
