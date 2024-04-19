@@ -484,7 +484,7 @@ function getToForm() {
         }
          if(item.phoneNumber && item.codeNumber){
             formData = document.createElement('p');
-            formData.innerHTML = `رقم الهاتف: ${item.phoneNumber} +${item.codeNumber}`;
+            formData.innerHTML = `رقم الهاتف: ${item.phoneNumber} ${item.codeNumber}+`;
             formData.classList.add('fw-bold');
             document.querySelector('#form-5 .container ').appendChild(formData);
         }
