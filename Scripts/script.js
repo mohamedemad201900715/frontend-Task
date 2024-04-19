@@ -356,7 +356,11 @@ function getToForm() {
         document.querySelectorAll('#form-5 .container p').forEach((e)=>{
             e.remove()
         })
-
+    }
+    if(document.querySelectorAll('#form-5 .container h1')){
+        document.querySelectorAll('#form-5 .container h1').forEach((e)=>{
+            e.remove()
+        })
     }
 //form1
     var formType = document.querySelector('input[name="type-form"]:checked');

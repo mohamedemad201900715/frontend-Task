@@ -207,3 +207,9 @@ color: darkgray;
     border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+    .box{
+        width: 80vw;
+    }
+
+}
