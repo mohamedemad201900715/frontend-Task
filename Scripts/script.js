@@ -71,7 +71,7 @@ function getRequiredField(element){
     const structureNumber = document.getElementById("structure-number");
     const structureNumberContainer = document.getElementById("input-structure-number");
  if (structureNumber && structureNumberContainer) {
-        if (element.value === "individual") {
+        if (element.value === "فردي") {
             structureNumber.required = true;
             structureNumberContainer.style.display = "block";
             document.getElementById("Serial-number").required =false;
