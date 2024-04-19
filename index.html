@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar"  dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+  <body>
+    <main class=" w-100 d-flex justify-content-center align-items-center">
+    <div class="box" id="form-1" >
+        <h1 class="title-form text-center"> الخطوه الاولى</h1>
+
+    <div class="form-type w-100 text-center">
+        <h4>نوع النموذج <span>*</span></h4>
+        <div class="d-flex justify-content-center align-items-center gap-4 mt-4 ">
+            <div>
+        <input type="radio" class="form-check-input" id="individual" name="type-form" value="فردي" required autocomplete="section-individual"/>
+        <label for="individual">فردي</label>
+    </div>
+    <div>
+        <input class="form-check-input" type="radio" id="company" name="type-form" value="شركه" required autocomplete="section-company" />
+         <label for="company">شركه</label>
+        </div>
+        </div>
+     </div>
+     <div class="d-flex w-100 align-items-center justify-content-around mt-4 flex-wrap">
+     <div class="car-maker">
+        <h4>صانع السياره<span>*</span></h4>
+        <div class="drop-down">
+            <div class="dropdown text-center">
+                <button id="car-maker-dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  اختر صانع السياره
+                </button>
+                <ul class="dropdown-menu ">
+                  <li><a class="dropdown-item" data-value="محمد عماد" href="#">محمد عماد</a></li>
+                  <li><a class="dropdown-item" data-value="ابراهيم احمد" href="#">ابراهيم احمد</a></li>
+                  <li><a class="dropdown-item" data-value="السيد حمدي" href="#">السيد حمدي</a></li>
+                </ul>
+              </div>
+              <input type="hidden" id="car-maker" name="car-maker" required>
+        </div>
+     </div>
+     <div class="car-model">
+        <h4>طراز السياره<span>*</span></h4>
+        <div class="drop-down">
+            <div class="dropdown text-center">
+                <button id="car-model-dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  اختر طراز السياره
+                </button>
+                <ul class="dropdown-menu ">
+                  <li><a class="dropdown-item" data-value="تسلا" href="#" >تسلا</a></li>
+                  <li><a class="dropdown-item" data-value="مارسيدس" href="#">مارسيدس</a></li>
+                  <li><a class="dropdown-item" data-value="بي ام دبليو" href="#">بي ام دبليو</a></li>
+                </ul>
+              </div>
+        </div>
+        <input type="hidden" id="car-model" name="car-model" required>
+     </div>
+    </div>
+     <div class="car-year text-center mt-5">
+        <h4>سنة صنع السياره<span>*</span></h4>
+        <div class="drop-down">
+            <div class="dropdown text-center">
+                <button id="car-year-dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  اختر سنة صنع السياره
+                </button>
+                <ul class="dropdown-menu ">
+                  <li><a class="dropdown-item" data-value="2016" href="#">2016</a></li>
+                  <li><a class="dropdown-item" data-value="2018" href="#">2018</a></li>
+                  <li><a class="dropdown-item" data-value="2020" href="#">2020</a></li>
+                </ul>
+              </div>
+        </div>
+        <input type="hidden" id="car-year" name="car-year" required>
+     </div>
+     <div class="car-image text-center mt-2 w-100">
+        <img src="./assets/2024-Maserati-Grecale-Folgore-أخبار-السيارات-ArabsAuto-3-780x470.webp" alt="car-img">
+     </div>
+     <div class="next-form d-flex justify-content-center align-items-center flex-column mt-2 ">
+        <span >يجب ملأ جميع الحقول المطلوبه اولا !</span>
+
+        <button disabled class="next-form1-btn d-flex justify-content-center align-items-center  gap-1">
+         <div class="image">
+            <img src="./assets/right-arrow.svg" alt="">
+            </div>
+        <p class="m-0">التالي</p>
+    </button>
+       
+     </div>
+     <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToastCancel" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header" style="direction: ltr;">
+          <strong class="me-auto">تم الغاء الطلب</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          تم الغاء الطلب
+        </div>
+      </div>
+    </div>
+</div>
+<div class="box" id="form-2" >
+    <h1 class="title-form text-center"> الخطوه الثانيه</h1>
+    <div class="row">
+        <div class="col-6">
+            <label for="piece-Name" class="fs-5 fw-bold m-3 "> أسم القطعه:*</label>
+          <input type="text" id="piece-Name" class="form-control" placeholder="اسم القطعه" required aria-label="piece-Name">
+        </div>
+        <div class="col-6">
+            <label for="piece-Name" class="fs-5 fw-bold m-3 "> عدد القطع:*</label>
+            <input type="number" id="piece-number" class="form-control" min="1" placeholder="عدد القطع" required aria-label="piece-number">  
+            <span id="numberFeedback"></span>
+          </div>
+
+        <div class="col-6">
+            <label for="Serial-number" class="fs-5 fw-bold m-3" > رقم مسلسل القطعه:</label>
+          <input type="text" id="Serial-number" class="form-control" placeholder="رقم مسلسل القطعه" required aria-label="Serial-number">
+        </div>
+        <div class="col-6" id="input-structure-number">
+            <label for="structure-number" class="fs-5 fw-bold m-3 "> رقم هيكل السياره:*</label>
+            <input type="text" id="structure-number" class="form-control"  placeholder="رقم هيكل السياره" aria-label="structure-number">  
+        </div>
+       
+      <div class="col-12">
+        <p for="floatingTextarea" class="fs-5 fw-bold m-3 "> وصف القطعه:*</p>
+        <div class="form-floating mt-4">
+            <textarea class="form-control" placeholder="صف القطعه بالتفصيل" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">وصف القطعه</label>
+          </div>
+      </div>
+      <div class="col-12">
+        <label for="formFile" class="fs-5 fw-bold m-3">صورة القطعه:</label>
+        <input class="form-control" type="file" id="formFile" accept="image/*" multiple>
+      </div>
+    </div>
+      <div class="next-form d-flex justify-content-center align-items-center flex-column mt-4 ">
+        <span >يجب ملأ جميع الحقول المطلوبه اولا !</span>
+<div class="d-flex justify-content-evenly w-100">
+        <button disabled class="next-form2-btn d-flex justify-content-center align-items-center  gap-1">
+         <div class="image">
+            <img src="./assets/right-arrow.svg" alt="">
+            </div>
+        <p class="m-0">التالي</p>
+    </button>
+    <button  class="back-form2-btn d-flex justify-content-center align-items-center  gap-1">
+        <p class="m-0">السابق</p>
+        <div class="image">
+           <img src="./assets/arrow-left.svg" class="arrow-left" alt="">
+           </div>
+       
+   </button>
+</div>
+     </div>
+
+</div>
+<div class="box  " id="form-3" >
+    <h1 class="title-form text-center"> الخطوه الثالثه</h1>
+    <div class="row">
+        <div class="col">
+            <label for="client-name" class="fs-5 fw-bold m-3 "> أسم العميل:*</label>
+          <input type="text" id="client-name" class="form-control" placeholder="اسم العميل" aria-label="client-name" required>
+        </div>
+        <div class="col">
+            <label for="client-email" class="form-label fs-5 fw-bold m-3">الأيميل:*</label>
+            <input type="email" class="form-control" id="client-email" placeholder="name@example.com" required>
+            <span id="emailFeedback"class="d-block m-2"></span>             
+        </div>
+      </div> 
+      <div class="row w-100 d-flex justify-content-center">
+        <div class="col-8 d-flex justify-content-center flex-column ">
+            <label for="client-number" class="fs-5 fw-bold m-3 text-center "> رقم الهاتف:*</label>
+            <div class="custom-select-wrapper">
+              <div class="custom-select">
+                  <div class="custom-selector" data-value =""><span>Select your country</span>
+                      <div class="arrow"></div>
+                  </div>
+                  <div class="custom-options">
+    
+                  </div>
+              </div>
+              <input type="tel" id="client-number" class="form-control" required>
+          </div>  
+          </div>
+      </div> 
+      <div class="row">
+        <div class="col">
+            <label for="client-Password" class="fs-5 fw-bold m-3 "> الباسورد:*</label>
+            <input type="password" id="client-Password" class="form-control" required>
+         </div>
+         <div class="col">
+            <label for="client-confirm-Password" class="fs-5 fw-bold m-3 "> تأكيد الباسورد:*</label>
+            <input type="password" id="client-confirm-Password" class="form-control" required>
+            <span class="m-2 d-block fw-bold" id="passwordMatch"></span>
+         </div>
+      </div> 
+      <div class="next-form d-flex justify-content-center align-items-center flex-column mt-4 ">
+        <span >يجب ملأ جميع الحقول المطلوبه اولا !</span>
+<div class="d-flex justify-content-evenly w-100">
+        <button disabled class="next-form3-btn d-flex justify-content-center align-items-center  gap-1">
+         <div class="image">
+            <img src="./assets/right-arrow.svg" alt="">
+            </div>
+        <p class="m-0">التالي</p>
+    </button>
+    <button  class="back-form3-btn d-flex justify-content-center align-items-center  gap-1">
+        <p class="m-0">السابق</p>
+        <div class="image">
+           <img src="./assets/arrow-left.svg" class="arrow-left" alt="">
+           </div>
+       
+   </button>
+</div>
+     </div>
+
+</div>
+<div class="box " id="form-4" >
+    <h1 class="title-form text-center"> الخطوه الرابعه</h1>
+
+<div class="form-type w-100 text-center">
+    <h4>نوع الشحن <span>*</span></h4>
+    <div class="d-flex justify-content-center align-items-center gap-4 mt-4 ">
+        <div>
+    <input type="radio" class="form-check-input"  id="myself" name="form-type" value="للنفس" required/>
+    <label for="myself">للنفس</label>
+</div>
+<div>
+    <input class="form-check-input" type="radio"  id="friend" name="form-type" value="لصديق" required />
+     <label for="friend">لصديق</label>
+    </div>
+    </div>
+ 
+</div>
+<div class="row">
+    <div class="col-6">
+        <label for="client-arabic-name" class="fs-5 fw-bold m-3 "> أسم العميل باللغه العربيه:*</label>
+      <input type="text" id="client-arabic-name" class="form-control" required aria-label="client-arabic-name">
+    </div>
+    <div class="col-6">
+        <label for="client-englich-name" class="fs-5 fw-bold m-3 "> أسم العميل باللغه الأنجليزيه:*</label>
+      <input type="text" id="client-englich-name" class="form-control" required aria-label="client-englich-name">
+    </div>
+    <div class="col-8">
+        <label for="inputAddress" class="form-label fs-5 fw-bold m-3">العنوان:*</label>
+        <input type="text" required class="form-control" id="inputAddress" >
+      </div>
+      <div class="col-4">
+        <label for="inputCountry" class="form-label fs-5 fw-bold m-3">الدوله:*</label>
+    <select id="inputCountry" class="form-select" required>
+      <option value="مصر" selected>مصر</option>
+      <option value="السعوديه" >السعوديه</option>
+    </select>
+      </div>
+    <div class="col-6">
+        <label for="inputCity" class="form-label fs-5 fw-bold m-3">المدينه:*</label>
+        <input type="text" required class="form-control" id="inputCity">
+      </div>
+      <div class="col-6">
+        <label for="inputState" class="form-label fs-5 fw-bold m-3">الحي:*</label>
+        <input type="text" required class="form-control" id="inputState">
+      </div>
+      <div class="col-5">
+        <label for="inputZip" class="form-label label-zip fs-5 fw-bold m-3">الصندوق البريدي:*</label>
+        <input type="text" required class="form-control" id="inputZip">
+      </div>
+      <div class="col-7">
+        <label for="client-delever-number" class="fs-6 fw-bold m-3 "> رقم الهاتف:*</label>
+        <div class="custom-select-wrapper">
+          <div class="custom-select number-2">
+              <div class="custom-selector" data-value =""><span>Select your country</span>
+                  <div class="arrow"></div>
+              </div>
+              <div class="custom-options">
+
+              </div>
+          </div>
+          <input type="tel" id="client-delever-number" class="form-control" required>
+      </div>
+      </div>
+    </div>
+  
+  <div class="next-form d-flex justify-content-center align-items-center flex-column mt-4 ">
+    <span >يجب ملأ جميع الحقول المطلوبه اولا !</span>
+<div class="d-flex justify-content-evenly w-100">
+    <button disabled class="next-form4-btn d-flex justify-content-center align-items-center  gap-1" onclick="getToForm()">
+     <div class="image">
+        <img src="./assets/right-arrow.svg" alt="">
+        </div>
+    <p class="m-0">التالي</p>
+</button>
+<button  class="back-form4-btn d-flex justify-content-center align-items-center  gap-1">
+    <p class="m-0">السابق</p>
+    <div class="image">
+       <img src="./assets/arrow-left.svg" class="arrow-left" alt="">
+       </div>
+   
+</button>
+</div>
+ </div>
+</div> 
+<div class="box  " id="form-5" >
+  <h1 class="title-form text-center"> المعاينه</h1>
+  <div class="page-form w-100 p-2">
+    <div class="container ">
+  </div>
+  </div>
+  <div class="next-form d-flex justify-content-evenly align-items-center  mt-4 ">
+  <button class="btn bg-primary text-light" id="ConfirmBtn"  data-bs-toggle="modal" data-bs-target="#ModalConfirm">تأكيد الطلب</button>
+  <!-- Modal --> 
+<div class="modal fade"  id="ModalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <img src="./assets/Tick_Mark.svg" style="width: 40px;" alt="">
+        <h1 class="modal-title fs-5 m-0" id="staticBackdropLabel">ﺗﻢ اﺳﺘﻼم اﻟﻄﻠﺐ</h1>
+        <button type="button" class="btn-close "style="margin-right: 50%;" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>رقم الطلب: <span class="fs-6 ">200000001</span></p>
+          <p >حالة الطلب: <span class="fs-6 text-success  ">جاري المراجعه</span></p>
+          
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+  <button class="btn bg-danger text-light" id="liveToastCancelBtn">الغاء الطلب</button>
+  <button class="back-form5-btn d-flex justify-content-center align-items-center  gap-1">
+    <p class="m-0">السابق</p>
+    <div class="image">
+       <img src="./assets/arrow-left.svg" class="arrow-left" alt="">
+       </div>
+   
+</button>
+</div>
+
+</div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="./Scripts/script.js"></script>
+
+
+</body>
+</html>
