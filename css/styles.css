@@ -101,6 +101,10 @@ main{
 font-size: 10px;
 color: darkgray;
 }
+.next-form span.danger{
+    color: red;
+    font-size: 15px;
+}
 .next-form button{
     background-color: transparent;
     border: none;

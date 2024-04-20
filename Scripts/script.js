@@ -29,6 +29,7 @@ dropdownButtons.forEach((dropdownButton) => {
     });
 });
 var copyRow = document.querySelector('#repeater-container .row').cloneNode(true);
+const copySpan = document.querySelector('span.danger').cloneNode(true);
 // Get all required form-1 elements
 const formElementsForm1 = document.querySelectorAll('#form-1 input');
 formElementsForm1.forEach(element => {
@@ -46,19 +47,28 @@ formElementsForm1.forEach(element => {
         if (allFilled) {
             document.querySelector('.car-image').style.display = 'block';
             document.querySelector(".next-form1-btn").disabled = false;
+            if( document.querySelector("#form-1 span.danger")){
+            document.querySelector("#form-1 span.danger").remove();
+        }
 
         } else {
             document.querySelector('.car-image').style.display = 'none';
             document.querySelector(".next-form1-btn").disabled = true;
-
+            const nextFormElement = document.querySelector('#form-1 .next-form');
+            if (!nextFormElement.contains(document.querySelector('#form-1 span.danger'))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
         }
     });
 });
 // redirect to form 2
 var nextForm1 = document.querySelector(".next-form1-btn");
 nextForm1.addEventListener("click", () => {
+
     document.getElementById('form-1').style.display = "none";
     document.getElementById('form-2').style.display = "block";
+    
     allRequiredForm2(); //Effect form2
     
 });
@@ -92,7 +102,7 @@ function getRequiredField(element){
 }
 
 // Get all required form-2 elements
-allRequiredForm2();
+// allRequiredForm2();
 function allRequiredForm2(input=true){
     const formElementsForm2 = document.querySelectorAll('#form-2 input[required]');
     formElementsForm2.forEach(element => {
@@ -101,8 +111,17 @@ function allRequiredForm2(input=true){
     });
     if (confirmAllfield && numberPieceValidation() && input) {
         document.querySelector(".next-form2-btn").disabled = false;
+        if( document.querySelector("#form-2 span.danger")){
+            document.querySelector("#form-2 span.danger").remove();
+        }
+
     } else {
         document.querySelector(".next-form2-btn").disabled = true;
+        const nextFormElement = document.querySelector('#form-2 .next-form');
+            if (!nextFormElement.contains(document.querySelector("#form-2 span.danger"))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
     }
         element.addEventListener('input', () => {
             const allFilled = Array.from(formElementsForm2).every(element => {
@@ -110,8 +129,18 @@ function allRequiredForm2(input=true){
             });
             if (allFilled && numberPieceValidation() && input) {
                 document.querySelector(".next-form2-btn").disabled = false;
+                if( document.querySelector("#form-2 span.danger")){
+                document.querySelector("#form-2 span.danger").remove();
+            }
+
             } else {
                 document.querySelector(".next-form2-btn").disabled = true;
+                const nextFormElement = document.querySelector('#form-2 .next-form');
+            if (!nextFormElement.contains(document.querySelector("#form-2 span.danger"))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
+
             }
         });
     });
@@ -215,8 +244,16 @@ formElementsForm3.forEach(element => {
         phoneNumber = validatePhoneNumber(phoneNumber);
         if (allFilled && countrySelected && phoneNumber) {
             document.querySelector(".next-form3-btn").disabled = false;
+            if( document.querySelector("#form-3 span.danger")){
+                document.querySelector("#form-3 span.danger").remove();
+            }
         } else {
             document.querySelector(".next-form3-btn").disabled = true;
+            const nextFormElement = document.querySelector('#form-3 .next-form');
+            if (!nextFormElement.contains(document.querySelector("#form-3 span.danger"))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
         }
     });
     element.addEventListener('change', () => {
@@ -228,8 +265,17 @@ formElementsForm3.forEach(element => {
         phoneNumber = validatePhoneNumber(phoneNumber);
         if (allFilled && countrySelected && phoneNumber) {
             document.querySelector(".next-form3-btn").disabled = false;
+            if( document.querySelector("#form-3 span.danger")){
+            document.querySelector("#form-3 span.danger").remove();
+        }
         } else {
             document.querySelector(".next-form3-btn").disabled = true;
+            const nextFormElement = document.querySelector('#form-3 .next-form');
+            if (!nextFormElement.contains(document.querySelector("#form-3 span.danger"))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
+
         }
     });
 });
@@ -265,8 +311,18 @@ formElementsForm4.forEach(element => {
         phoneNumber = validatePhoneNumber(phoneNumber);
         if (allFilled && countrySelected && phoneNumber) {
             document.querySelector(".next-form4-btn").disabled = false;
+            if( document.querySelector("#form-4 span.danger")){
+            document.querySelector("#form-4 span.danger").remove();
+        }
         } else {
             document.querySelector(".next-form4-btn").disabled = true;
+            const nextFormElement = document.querySelector('#form-4 .next-form');
+            if (!nextFormElement.contains(document.querySelector("#form-4 span.danger"))){
+                const firstChild = nextFormElement.firstChild;
+                nextFormElement.insertBefore(copySpan, firstChild);
+            }
+            
+
         }
     });
     element.addEventListener('change', () => {
@@ -633,7 +689,6 @@ addRowButton.addEventListener('click', () => {
         feedback.textContent = `الرقم غير صالح يجب البدأ من الرقم ${minNumber}`;
         feedback.style.color = 'red';
     }
-    console.log(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1)
     allRequiredForm2(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1);
   });
 
