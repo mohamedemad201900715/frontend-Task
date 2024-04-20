@@ -28,6 +28,7 @@ dropdownButtons.forEach((dropdownButton) => {
         });
     });
 });
+var copyRow = document.querySelector('#repeater-container .row').cloneNode(true);
 // Get all required form-1 elements
 const formElementsForm1 = document.querySelectorAll('#form-1 input');
 formElementsForm1.forEach(element => {
@@ -35,6 +36,7 @@ formElementsForm1.forEach(element => {
         const allFilled = Array.from(formElementsForm1).every(element => {
             if (element.type === "radio") {
                 getRequiredField(element); //effect on form2
+                copyRow = repeaterContainer.querySelector('.row').cloneNode(true);
                 return document.querySelector(`#form-1 input[name="${element.name}"]:checked`) !== null;
             } else {
                 return element.value.trim() !== '';
@@ -90,15 +92,23 @@ function getRequiredField(element){
 }
 
 // Get all required form-2 elements
-function allRequiredForm2(){
+allRequiredForm2();
+function allRequiredForm2(input=true){
     const formElementsForm2 = document.querySelectorAll('#form-2 input[required]');
     formElementsForm2.forEach(element => {
+        const confirmAllfield = Array.from(formElementsForm2).every(element => {
+            return element.value.trim() !== '';
+    });
+    if (confirmAllfield && numberPieceValidation() && input) {
+        document.querySelector(".next-form2-btn").disabled = false;
+    } else {
+        document.querySelector(".next-form2-btn").disabled = true;
+    }
         element.addEventListener('input', () => {
             const allFilled = Array.from(formElementsForm2).every(element => {
                     return element.value.trim() !== '';
             });
-    
-            if (allFilled && numberPieceValidation()) {
+            if (allFilled && numberPieceValidation() && input) {
                 document.querySelector(".next-form2-btn").disabled = false;
             } else {
                 document.querySelector(".next-form2-btn").disabled = true;
@@ -109,7 +119,6 @@ function allRequiredForm2(){
 //reg number from min
 var numberInput = document.getElementById('piece-number').addEventListener('input', numberPieceValidation);
 function numberPieceValidation(){
-    
         var numberInput = document.getElementById('piece-number');
         var minNumber = document.getElementById('piece-number').getAttribute('min');
         var feedback = document.getElementById('numberFeedback');
@@ -212,7 +221,6 @@ formElementsForm3.forEach(element => {
     });
     element.addEventListener('change', () => {
         const allFilled = Array.from(formElementsForm3).every(element => {
-            console.log(element.value);
                 return element.value.trim() !== '' && checkPasswordMatch() && emailValidation() ;
         });
         const countrySelected = document.querySelector('.custom-selector').getAttribute('data-value') !== '';
@@ -396,13 +404,18 @@ function getToForm() {
     data.push(carInfo);
 
     //form2
-    var pieceInfo = {
-        pieceName: document.getElementById('piece-Name').value,
-        pieceNumber: document.getElementById('piece-number').value,
-        serialNumber: document.getElementById('Serial-number').value,
-        structureNumber: document.getElementById('structure-number').value,
-        pieceDescription: document.getElementById('floatingTextarea').value
-    };
+    var pieceInfo = []; // Array to hold piece information for each row
+    const repeater = document.getElementById('repeater-container');
+
+    repeater.querySelectorAll('.row').forEach((row, index) => {
+        pieceInfo.push({
+            pieceName: row.querySelector('#piece-Name').value,
+            pieceNumber: row.querySelector('#piece-number').value,
+            serialNumber: row.querySelector('#Serial-number').value,
+            structureNumber: row.querySelector('#structure-number').value,
+            pieceDescription: row.querySelector('#floatingTextarea').value
+        });
+    });
     data.push(pieceInfo);
 
      //form3
@@ -458,37 +471,46 @@ function getToForm() {
             formData.classList.add('fw-bold');
             document.querySelector('#form-5 .container ').appendChild(formData);
         }
-         if(item.pieceName){
-            formData = document.createElement('p');
-            formData.innerHTML = `اسم القطعه: ${item.pieceName}`;
-            formData.classList.add('fw-bold');
-            document.querySelector('#form-5 .container ').appendChild(formData);
+        if (Array.isArray(item)) {
+            item.forEach((piece, index) => {
+                formData = document.createElement('p');
+                formData.innerHTML = `قطعه ${index + 1}: `
+                formData.classList.add('fw-bold');
+                document.querySelector('#form-5 .container').appendChild(formData);
+                if(piece.pieceName){
+                    formData = document.createElement('p');
+                    formData.innerHTML = `اسم القطعه: ${piece.pieceName}`;
+                    formData.classList.add('fw-bold');
+                    document.querySelector('#form-5 .container ').appendChild(formData);
+                }
+                 if(piece.pieceNumber){
+                    formData = document.createElement('p');
+                    formData.innerHTML = `عدد القطع: ${piece.pieceNumber}`;
+                    formData.classList.add('fw-bold');
+                    document.querySelector('#form-5 .container ').appendChild(formData);
+                }
+                
+                 if(piece.serialNumber){
+                    formData = document.createElement('p');
+                    formData.innerHTML = `رقم مسلسل القطعه: ${piece.serialNumber}`;
+                    formData.classList.add('fw-bold');
+                    document.querySelector('#form-5 .container ').appendChild(formData);
+                }
+                 if(piece.structureNumber){
+                    formData = document.createElement('p');
+                    formData.innerHTML = `رقم هيكل السياره: ${piece.structureNumber}`;
+                    formData.classList.add('fw-bold');
+                    document.querySelector('#form-5 .container ').appendChild(formData);
+                }
+                 if(piece.pieceDescription){
+                    formData = document.createElement('p');
+                    formData.innerHTML = `وصف القطعه: ${piece.pieceDescription}`;
+                    formData.classList.add('fw-bold');
+                    document.querySelector('#form-5 .container ').appendChild(formData);
+                }
+            });
         }
-         if(item.pieceNumber){
-            formData = document.createElement('p');
-            formData.innerHTML = `عدد القطع: ${item.pieceNumber}`;
-            formData.classList.add('fw-bold');
-            document.querySelector('#form-5 .container ').appendChild(formData);
-        }
-        
-         if(item.serialNumber){
-            formData = document.createElement('p');
-            formData.innerHTML = `رقم مسلسل القطعه: ${item.serialNumber}`;
-            formData.classList.add('fw-bold');
-            document.querySelector('#form-5 .container ').appendChild(formData);
-        }
-         if(item.structureNumber){
-            formData = document.createElement('p');
-            formData.innerHTML = `رقم هيكل السياره: ${item.structureNumber}`;
-            formData.classList.add('fw-bold');
-            document.querySelector('#form-5 .container ').appendChild(formData);
-        }
-         if(item.pieceDescription){
-            formData = document.createElement('p');
-            formData.innerHTML = `وصف القطعه: ${item.pieceDescription}`;
-            formData.classList.add('fw-bold');
-            document.querySelector('#form-5 .container ').appendChild(formData);
-        }
+
          if(item.clientArabicName){
             formData = document.createElement('p');
             formData.innerHTML = `الأسم بالعربي: ${item.clientArabicName}`;
@@ -569,6 +591,7 @@ if (toastTriggerCancel) {
     toastBootstrapCancel.show();
     document.getElementById('form-5').style.display = "none";
     document.getElementById('form-1').style.display = "block";
+    location.reload();
   })
 }
 // back form 5
@@ -577,3 +600,55 @@ backBtn.addEventListener('click', ()=>{
     document.getElementById('form-5').style.display = "none";
     document.getElementById('form-4').style.display = "block";
 } )
+
+
+
+
+//repeater form2
+const repeaterContainer = document.getElementById('repeater-container');
+const addRowButton = document.getElementById('add-row');
+
+addRowButton.addEventListener('click', () => {
+  const newRow = copyRow.cloneNode(true);
+  newRow.querySelectorAll('input, textarea').forEach(element => {
+    element.value = '';
+  });
+  repeaterContainer.appendChild(newRow);
+  document.querySelector(".next-form2-btn").disabled = true;
+  newRow.querySelector('#piece-number').addEventListener('input',()=>{
+    var numberInput = newRow.querySelector('#piece-number');
+    var minNumber = newRow.querySelector('#piece-number').getAttribute('min');
+    var feedback = newRow.querySelector('#numberFeedback');
+    var numberPattern = /^[0-9]+$/;
+    if (numberInput.value === '') {
+        feedback.textContent = '';
+        feedback.style.color = 'black';
+    } else if (numberPattern.test(numberInput.value) && parseInt(numberInput.value) >= minNumber) {
+        feedback.textContent = 'الرقم صالح';
+        feedback.style.color = 'green';
+    } else {
+        feedback.textContent = `الرقم غير صالح يجب البدأ من الرقم ${minNumber}`;
+        feedback.style.color = 'red';
+    }
+    console.log(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1)
+    allRequiredForm2(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1);
+  });
+  
+  const removeButtons = newRow.querySelectorAll('.remove-row');
+  removeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        button.parentNode.remove();
+        allRequiredForm2();
+    });
+  });
+  allRequiredForm2();
+});
+
+
+const removeButtons = repeaterContainer.querySelectorAll('.remove-row');
+removeButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.parentNode.remove();
+    allRequiredForm2();
+  });
+});

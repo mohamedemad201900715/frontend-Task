@@ -124,10 +124,11 @@ color: darkgray;
 .label-zip{
     font-size: 16px !important;
 }
-#form-5,
+
 #form-2,
 #form-3,
-#form-4{
+#form-4,
+#form-5{
     display: none;
 }
 #input-structure-number{

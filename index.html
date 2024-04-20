@@ -104,40 +104,49 @@
       </div>
     </div>
 </div>
-<div class="box" id="form-2" >
+<div class="box" id="form-2">
+  <div>
     <h1 class="title-form text-center"> الخطوه الثانيه</h1>
-    <div class="row">
+    <div id="repeater-container">
+      <div class="row">
         <div class="col-6">
-            <label for="piece-Name" class="fs-5 fw-bold m-3 "> أسم القطعه:*</label>
+          <label for="piece-Name" class="fs-5 fw-bold m-3 "> أسم القطعه:*</label>
           <input type="text" id="piece-Name" class="form-control" placeholder="اسم القطعه" required aria-label="piece-Name">
         </div>
         <div class="col-6">
-            <label for="piece-Name" class="fs-5 fw-bold m-3 "> عدد القطع:*</label>
-            <input type="number" id="piece-number" class="form-control" min="1" placeholder="عدد القطع" required aria-label="piece-number">  
-            <span id="numberFeedback"></span>
-          </div>
+          <label for="piece-number" class="fs-5 fw-bold m-3 "> عدد القطع:*</label>
+          <input type="number" id="piece-number" class="form-control" min="1" placeholder="عدد القطع" required aria-label="piece-number">  
+          <span id="numberFeedback"></span>
+        </div>
 
         <div class="col-6">
-            <label for="Serial-number" class="fs-5 fw-bold m-3" > رقم مسلسل القطعه:</label>
+          <label for="Serial-number" class="fs-5 fw-bold m-3" > رقم مسلسل القطعه:</label>
           <input type="text" id="Serial-number" class="form-control" placeholder="رقم مسلسل القطعه" required aria-label="Serial-number">
         </div>
         <div class="col-6" id="input-structure-number">
-            <label for="structure-number" class="fs-5 fw-bold m-3 "> رقم هيكل السياره:*</label>
-            <input type="text" id="structure-number" class="form-control"  placeholder="رقم هيكل السياره" aria-label="structure-number">  
+          <label for="structure-number" class="fs-5 fw-bold m-3 "> رقم هيكل السياره:*</label>
+          <input type="text" id="structure-number" class="form-control"  placeholder="رقم هيكل السياره" aria-label="structure-number">  
         </div>
        
       <div class="col-12">
-        <p for="floatingTextarea" class="fs-5 fw-bold m-3 "> وصف القطعه:*</p>
+        <p for="floatingTextarea" class="fs-5 fw-bold m-3 "> وصف القطعه:</p>
         <div class="form-floating mt-4">
-            <textarea class="form-control" placeholder="صف القطعه بالتفصيل" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">وصف القطعه</label>
-          </div>
+          <textarea class="form-control" placeholder="صف القطعه بالتفصيل" id="floatingTextarea"></textarea>
+          <label for="floatingTextarea">وصف القطعه</label>
+        </div>
       </div>
       <div class="col-12">
         <label for="formFile" class="fs-5 fw-bold m-3">صورة القطعه:</label>
         <input class="form-control" type="file" id="formFile" accept="image/*" multiple>
       </div>
+        <button class="btn btn-danger remove-row w-25 mt-3 ">ازالة القطعه</button>
+
     </div>
+    </div>
+    <div class="w-100 text-center">
+      <button class="btn btn-primary mt-4 text-center" id="add-row">اضافة قطعه</button>
+    </div>
+  </div>
       <div class="next-form d-flex justify-content-center align-items-center flex-column mt-4 ">
         <span >يجب ملأ جميع الحقول المطلوبه اولا !</span>
 <div class="d-flex justify-content-evenly w-100">
