@@ -615,6 +615,9 @@ addRowButton.addEventListener('click', () => {
   });
   repeaterContainer.appendChild(newRow);
   document.querySelector(".next-form2-btn").disabled = true;
+  const photoInputCopy = newRow.querySelector('#formFile');
+  const photoContainerCopy = newRow.querySelector('#image-container');
+  displayPhoto(photoInputCopy, photoContainerCopy );
   newRow.querySelector('#piece-number').addEventListener('input',()=>{
     var numberInput = newRow.querySelector('#piece-number');
     var minNumber = newRow.querySelector('#piece-number').getAttribute('min');
@@ -633,7 +636,7 @@ addRowButton.addEventListener('click', () => {
     console.log(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1)
     allRequiredForm2(numberPattern.test(numberInput.value)  && numberInput.value >=  minNumber - 1);
   });
-  
+
   const removeButtons = newRow.querySelectorAll('.remove-row');
   removeButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -641,7 +644,8 @@ addRowButton.addEventListener('click', () => {
         allRequiredForm2();
     });
   });
-  allRequiredForm2();
+  
+
 });
 
 
@@ -652,3 +656,26 @@ removeButtons.forEach(button => {
     allRequiredForm2();
   });
 });
+
+
+
+//image
+const photoInput = document.getElementById('formFile');
+const photoContainer = document.getElementById('image-container');
+displayPhoto(photoInput, photoContainer );
+
+function displayPhoto(fileInput, containerDisplay){
+    fileInput.addEventListener('change', (event) => {
+        const existingImage = containerDisplay.querySelector('img');
+        if (existingImage) {
+          existingImage.remove();
+        }
+  const selectedFile = event.target.files[0];
+
+  if (selectedFile) {
+    const image = new Image();
+    image.src = URL.createObjectURL(selectedFile);
+    containerDisplay.appendChild(image);
+  }
+});
+}

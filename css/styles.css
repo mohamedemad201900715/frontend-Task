@@ -214,3 +214,13 @@ color: darkgray;
     }
 
 }
+#image-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+#image-container img{
+    width: 50%;
+}
