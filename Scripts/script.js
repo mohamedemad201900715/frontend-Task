@@ -402,8 +402,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 });
 // validate phone number input
-
-
 function validatePhoneNumber(phoneNumberInput) {
     if(!phoneNumberInput.value){
         return false;
@@ -460,7 +458,7 @@ function getToForm() {
     data.push(carInfo);
 
     //form2
-    var pieceInfo = []; // Array to hold piece information for each row
+    var pieceInfo = []; 
     const repeater = document.getElementById('repeater-container');
 
     repeater.querySelectorAll('.row').forEach((row, index) => {
