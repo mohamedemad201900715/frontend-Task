@@ -210,6 +210,20 @@ formElementsForm3.forEach(element => {
             document.querySelector(".next-form3-btn").disabled = true;
         }
     });
+    element.addEventListener('change', () => {
+        const allFilled = Array.from(formElementsForm3).every(element => {
+            console.log(element.value);
+                return element.value.trim() !== '' && checkPasswordMatch() && emailValidation() ;
+        });
+        const countrySelected = document.querySelector('.custom-selector').getAttribute('data-value') !== '';
+        var phoneNumber = document.getElementById('client-number');
+        phoneNumber = validatePhoneNumber(phoneNumber);
+        if (allFilled && countrySelected && phoneNumber) {
+            document.querySelector(".next-form3-btn").disabled = false;
+        } else {
+            document.querySelector(".next-form3-btn").disabled = true;
+        }
+    });
 });
 // redirect to form 4
 var nextForm1 = document.querySelector(".next-form3-btn");
@@ -223,6 +237,7 @@ nextForm1.addEventListener("click", () => {
     document.getElementById('form-3').style.display = "none";
     document.getElementById('form-2').style.display = "block";
 });
+
 //End form 3
 // Start form 4
 // Get all required form-4 elements
@@ -300,10 +315,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
             customSelector.firstChild.textContent = this.textContent;
             customSelector.setAttribute('data-value', this.getAttribute('data-value'));
             customOptionsContainer.style.display = 'none';
+            const clientNumberCode = document.getElementById("client-number-code");
+            clientNumberCode.value = this.getAttribute('data-value');
+            clientNumberCode.dispatchEvent(new Event('change'));
         });
         option2.addEventListener('click', function() {
             customSelector2.firstChild.textContent =this.textContent;
             customSelector2.setAttribute('data-value', this.getAttribute('data-value'));
+            const clientDeleverCode = document.getElementById("client-delever-number-code");
+            clientDeleverCode.value = this.getAttribute('data-value');
+            clientDeleverCode.dispatchEvent(new Event('change'));
             customOptionsContainer2.style.display = 'none';
         });
     });
